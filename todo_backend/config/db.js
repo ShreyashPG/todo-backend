@@ -1,20 +1,23 @@
-import mongoose from 'mongoose';
-import express from 'express';
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+dotenv.config();
 
-const  app=express();
+// const  app=express();
 
-const mongoURL=mongodb="mongodb://localhost:27017/Badges";
-
-mongoose.connect(mongoURL,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true,
-});
-
-const db=mongoose.connection;
-db.on('error',console.error.bind(console,'connection error'));
-db.once('open',function(){
-    console.log('Connected to MongoDB');
-});
-
+const mongoURL = process.env.MONGO_URL;// Correct variable name
+console.log('Mongo URL:', mongoURL); 
+const connectDB = async () => {
+    try {
+      await   mongoose.connect(mongoURL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+        process.exit(1); // Exit process with failure
+    }
+};
 //app.use(express.json());
 
+module.exports=connectDB;
