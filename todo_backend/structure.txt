@@ -1,0 +1,25 @@
+backend/
+│
+├── config/
+│   ├── db.js
+│   └── default.json
+│
+├── controllers/
+│   └── todoController.js
+│
+├── models/
+│   └── Todo.js
+│
+├── routes/
+│   └── todoRoutes.js
+│
+├── middleware/
+│   └── errorHandler.js
+│
+├── utils/
+│   └── logger.js
+│
+├── .gitignore
+├── app.js
+├── package.json
+└── README.md
